@@ -1,4 +1,4 @@
-import React, { useState } from 'react'                                                                                 
+import React, { useEffect, useState } from 'react'                                                                                 
 import Container from 'react-bootstrap/Container';                                                                      
 import Navbar from 'react-bootstrap/Navbar'                                                                             
 import logo from './components/images/logo2015_2.png'                                                                   
@@ -8,6 +8,9 @@ import { SnowReactForm } from './features/snow/snowReactForm'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
+  useEffect(() => {
+    document.title = 'Снегосъемка'
+  }, [])
   const currentUrl = window.location.href         
   const pointCode = (currentUrl.indexOf('pointCode')>-1)? currentUrl.slice(-5):'99999'                                                                               
   const [show, setShow] = useState(false)                                                                                 
