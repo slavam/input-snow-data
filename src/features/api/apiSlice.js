@@ -21,8 +21,10 @@ export const apiSlice = createApi({
     
     postPrecipitation: builder.query({
       query: pointName=>{
+        let ipAddress = ((url?.indexOf('localhost')>-1) || (url?.indexOf('//10.54.')>-1))? '10.54.1.6:8080':'31.133.32.14:8080'
         return ({
-          url:  `http://10.54.1.6:8080/other_observations/post_precipitation.json?source=${pointName}`
+          // url:  `http://10.54.1.6:8080/other_observations/post_precipitation.json?source=${pointName}`
+          url:  `http://${ipAddress}/other_observations/post_precipitation.json?source=${pointName}`
         })}
       ,
       responseHandler: "text",
@@ -31,9 +33,10 @@ export const apiSlice = createApi({
     
     savePrecipitation: builder.mutation({
       query: (precipitationData) =>{
+        let ipAddress = ((url?.indexOf('localhost')>-1) || (url?.indexOf('//10.54.')>-1))? '10.54.1.6':'31.133.32.14'
         return({
           method: "POST",
-          url: 'http://10.54.1.6:8080/other_observations/create_other_data.json',
+          url: `http://${ipAddress}:8080/other_observations/create_other_data.json`,
           // headers: { "Access-Control-Allow-Origin": "*", 'Content-Type': 'application/json' },
           body: precipitationData
       } )},

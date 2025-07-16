@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Container from 'react-bootstrap/Container';                                                                      
 import Navbar from 'react-bootstrap/Navbar'           
 import { Routes, Route } from 'react-router-dom'
-// import Nav from 'react-bootstrap/Nav'                                                                  
+import Nav from 'react-bootstrap/Nav'                                                                  
 import logo from './components/images/logo2015_2.png'                                                                   
 import Card from 'react-bootstrap/Card'                                                                                 
 import Button from 'react-bootstrap/Button'
@@ -34,7 +34,8 @@ function App() {
   // const currentUrl = window.location.href         
   // const pointCode = (currentUrl.indexOf('pointCode')>-1)? currentUrl.slice(-5):'99999'
   
-  const [show, setShow] = useState(false)                                                                                 
+  const [show, setShow] = useState(false)            
+  const firstPage = (currentUrl.indexOf('precipitation')>-1)? <InputPrecipitation pointName={pointName}/>:<SnowReactForm pointCode={pointCode}/>
   const about = show? <Card className='text-center' bg='success' >                                                          
     <Card.Body>                                                                                                               
       <Card.Title>УГМС ДНР</Card.Title>                                                                                       
@@ -60,17 +61,18 @@ function App() {
           {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/precipitation">Осадки</Nav.Link>
+              <Nav.Link href="/">Снег</Nav.Link>
+              <Nav.Link href="/features/precipitation">Осадки</Nav.Link>
             </Nav>
           </Navbar.Collapse> */}
         </Container>                                                                                                          
       </Navbar>                                                                                                               
       <Routes>
-        <Route path="/" element={<SnowReactForm pointCode={pointCode}/>} />
-        <Route path="/precipitation" element={<InputPrecipitation pointName={pointName}/>} />
+        <Route path="/" element={null}/>
+        {/* <Route path="/precipitation" element={<InputPrecipitation pointName={pointName}/>} /> */}
         {/* <Route path="/precipitationList" element={<LastPrecipitation />} /> */}
       </Routes>
+      {firstPage}
       {/* {about} */}
       {/* <InputSnowTelegram  currentUrl={currentUrl}/>                                                                             */}
       {/* <SnowReactForm pointCode={pointCode}/> */}
