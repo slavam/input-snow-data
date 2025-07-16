@@ -4,8 +4,6 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-// import './index.css';
-// import '../src/index.css'
 import {BrowserRouter as Router} from 'react-router-dom'
 
 const container = document.getElementById('root');
